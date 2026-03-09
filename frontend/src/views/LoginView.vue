@@ -27,6 +27,9 @@
 
 <script setup>
 import {ref} from 'vue';
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const email = ref('');
 const password = ref('');
@@ -78,6 +81,17 @@ async function loginUser() {
         } else {
             localStorage.setItem('token', data.access_token);
             alert('Login successful');
+
+            if (data.role === 'admin') {
+                router.push('/admin_dashboard');
+
+            } else if (data.role === 'student') {
+                router.push('/student_dashboard');
+            } else if (data.role === 'company') {
+                router.push('/company_dashboard');
+            } else {
+                alert('Unknown user role');
+            }
             return;
         }
 

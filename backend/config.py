@@ -4,4 +4,4 @@ class Dev:
 
     JWT_SECRET_KEY = "someweirdocreatedjwtandnowihavetolearnthis"
 
-    UPLOAD_FOLDER = "resume_folder"
+    UPLOAD_FOLDER = "backend/resume_folder"

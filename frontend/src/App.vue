@@ -18,6 +18,14 @@ import { RouterLink, RouterView } from 'vue-router';
             <li class="nav-item">
               <RouterLink class="nav-link active" to="/login">Login</RouterLink>
             </li>
+
+            <li class="nav-item">
+              <RouterLink class="nav-link active" to="/company_registration">Company registration</RouterLink>
+            </li>
+
+            <li class="nav-item">
+              <RouterLink class="nav-link active" to="/student_registration">Student registration</RouterLink>
+            </li>
             
           </ul>
           <form class="d-flex" role="search">

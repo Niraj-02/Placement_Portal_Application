@@ -14,6 +14,11 @@ class Company(db.Model):
     industry = db.Column(db.String(50), nullable = False)
     description = db.Column(db.Text, nullable = False)
 
+    hr_name = db.Column(db.String(100), nullable = False)
+    hr_email = db.Column(db.String(100), nullable = False)
+    website = db.Column(db.String(200))
+    location = db.Column(db.String(100))
+
     created_at = db.Column(db.DateTime, default = lambda: datetime.now(timezone.utc))
 
     status = db.Column(Enum("pending", "approved", "rejected", name="company_approval"), default = "pending")

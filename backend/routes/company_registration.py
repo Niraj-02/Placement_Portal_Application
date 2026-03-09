@@ -18,6 +18,11 @@ class CompanyRegister(Resource):
         industry = data.get("industry")
         description = data.get("description")
 
+        hr_name = data.get("hr_name")
+        hr_email = data.get("hr_email")
+        website = data.get("website")
+        location = data.get("location")
+
         if User.query.filter_by(email=email).first():
             return {"message": "User already exists"}, 409
         
@@ -36,7 +41,11 @@ class CompanyRegister(Resource):
             company_name=company_name,
             industry=industry,
             description=description,
-            user_id=user.id
+            user_id=user.id,
+            hr_name=hr_name,
+            hr_email=hr_email,
+            website=website,
+            location=location
         )
         
         db.session.add(company)
