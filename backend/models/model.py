@@ -40,6 +40,8 @@
 
 #     skills = db.Column(db.Text, nullable = False)
 
+#     resume = db.Column(db.String(200), nullable = True)
+
 #     blacklist = db.Column(db.Boolean, default = False)
 
 #     created_at = db.Column(db.DateTime, default = lambda: datetime.now(timezone.utc))

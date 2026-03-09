@@ -1,20 +1,21 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask_cors import CORS
 from flask_restful import Api, Resource
 
 
-from extensions import db
+from extensions import db, jwt
 from config import Dev
 from models import *
-
+from routes import *
 
 def create_app():
     app = Flask(__name__)
-    CORS(app)
+    CORS(app, resources={r"/api/*": {"origins": "*"}})
 
     app.config.from_object(Dev)
 
     db.init_app(app)
+    jwt.init_app(app)
 
     api = Api(app)
 
@@ -22,6 +23,11 @@ def create_app():
         def get(self):
             return {"message": "Hello, World!"}
     api.add_resource(Index, "/")
+    
+    api.add_resource(StudentRegister, "/api/register/student")
+    api.add_resource(CompanyRegister, "/api/register/company")
+    
+    api.add_resource(Login, "/api/login")
 
     return app
 
