@@ -38,7 +38,7 @@ class Login(Resource):
                 return {"message": "Company is blacklisted. Contact support for more information."}, 403
         
         access_token = create_access_token(
-            identity=user.id, 
+            identity=str(user.id), 
             expires_delta= timedelta(days=1),
             additional_claims={"role": user.role})
         

@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify,send_from_directory
 from flask_cors import CORS
 from flask_restful import Api, Resource
 
@@ -29,13 +29,20 @@ def create_app():
     
     api.add_resource(Login, "/api/login")
 
-    api.add_resource(Companies, "/companies", "/companies/<int:company_id>")
+    api.add_resource(Companies, "/api/companies", "/api/companies/<int:company_id>")
 
-    api.add_resource(Applications, "/application", "/application/<int:application_id>")
+    api.add_resource(Applications, "/api/application", "/api/application/<int:application_id>")
 
-    api.add_resource(PlacementDrives, "/drives", "/drives/<int:drive_id>")
+    api.add_resource(PlacementDrives, "/api/drives", "/api/drives/<int:drive_id>")
 
-    api.add_resource(Student, "/students", "/students/<int:student_id>")
+    api.add_resource(Students, "/api/students", "/api/students/<int:student_id>")
+
+    
+
+    @app.route("/resume_folder/<filename>")
+    def get_resume(filename):
+        print("UPLOAD_FOLDER:", app.config["UPLOAD_FOLDER"])
+        return send_from_directory(app.config["UPLOAD_FOLDER"], filename)
 
     return app
 

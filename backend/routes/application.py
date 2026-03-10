@@ -42,8 +42,8 @@ class Applications(Resource):
 
         if drive.drive_status == "completed":
             return {"message": "Drive already completed"}, 400
-
-        if drive.application_deadline < datetime.now(timezone.utc):
+        # deadline = datetime.fromisoformat(data["application_deadline"]).replace(tzinfo=timezone.utc)
+        if drive.application_deadline < datetime.utcnow():
             return {"message": "Application deadline passed"}, 400
 
         student = Student.query.filter_by(user_id=user_id).first()

@@ -1,7 +1,15 @@
 <script setup>
 
-import { RouterLink, RouterView } from 'vue-router';
+import { RouterLink, RouterView, useRouter } from 'vue-router';
 
+const router = useRouter()
+
+function logout(){
+  localStorage.removeItem("token")
+  localStorage.removeItem("role")
+
+  router.push("/login")
+}
 </script>
 
 <template>
@@ -25,6 +33,12 @@ import { RouterLink, RouterView } from 'vue-router';
 
             <li class="nav-item">
               <RouterLink class="nav-link active" to="/student_registration">Student registration</RouterLink>
+            </li>
+
+            <li class="nav-item">
+              <button class="nav-link btn btn-link" @click="logout">
+                Logout
+              </button>
             </li>
             
           </ul>

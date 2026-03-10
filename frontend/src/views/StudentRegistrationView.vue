@@ -26,14 +26,30 @@
 
                     <!-- branch -->
                     <div class="mb-3">
-                        <label class="form-label">Branch</label>
-                        <input type="text" class="form-control" v-model="branch">
+                    <label class="form-label">Branch</label>
+
+                    <select class="form-select" v-model="branch">
+
+                        <option disabled value="">Select Branch</option>
+
+                        <option>Computer Science</option>
+                        <option>Information Technology</option>
+                        <option>Data Science</option>
+                        <option>Electronics and Communication</option>
+                        <option>Electrical Engineering</option>
+                        <option>Mechanical Engineering</option>
+                        <option>Civil Engineering</option>
+                        <option>Chemical Engineering</option>
+                        <option>Metallurgical Engineering</option>
+
+                    </select>
+
                     </div>
 
                     <!-- cgpa -->
                     <div class="mb-3">
                         <label class="form-label">CGPA</label>
-                        <input type="number" class="form-control" v-model="cgpa" step="0.01">
+                        <input type="number" class="form-control" v-model="cgpa" min="0" max="10" step="any">
                     </div>
 
                     <!-- year of passing -->

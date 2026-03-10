@@ -37,7 +37,8 @@ class PlacementDrives(Resource):
         
         data = request.get_json()
 
-        deadline = datetime.fromisoformat(data["application_deadline"])
+        # deadline = datetime.fromisoformat(data["application_deadline"])
+        deadline = datetime.fromisoformat(data["application_deadline"]).replace(tzinfo=timezone.utc)
         if deadline <= datetime.now(timezone.utc):
             return {"message": "Deadline must be in the future"}, 400
 

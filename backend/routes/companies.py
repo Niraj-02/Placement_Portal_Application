@@ -41,6 +41,20 @@ class Companies(Resource):
             if not company:
                 return {"message": "Company not found"}, 404
             
+            if role == "admin":
+                return {
+                "id": company.id,
+                "name": company.company_name,
+                "description": company.description,
+                "industry":company.industry,
+                "hr_name": company.hr_name,
+                "hr_email": company.hr_email,
+                "website": company.website,
+                "location": company.location,
+                "email": company.user.email,
+                "status": company.status
+            }, 200
+            
             if company.blacklist:
                 return {"message": "Company is blacklisted. Contact support for more information."}, 403
             
@@ -51,11 +65,13 @@ class Companies(Resource):
                 "id": company.id,
                 "name": company.company_name,
                 "description": company.description,
+                "industry":company.industry,
                 "hr_name": company.hr_name,
                 "hr_email": company.hr_email,
                 "website": company.website,
                 "location": company.location,
-                "email": company.user.email
+                "email": company.user.email,
+                "status": company.status
             }, 200
         
         #Querying a list of companies for admin and student dash
@@ -87,7 +103,9 @@ class Companies(Resource):
                 "hr_email": company.hr_email,
                 "website": company.website,
                 "location": company.location,
-                "email": company.user.email
+                "email": company.user.email,
+                "status": company.status,
+                "industry":company.industry
             })
 
         return result, 200
