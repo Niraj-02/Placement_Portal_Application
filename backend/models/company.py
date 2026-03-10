@@ -20,6 +20,7 @@ class Company(db.Model):
     location = db.Column(db.String(100))
 
     created_at = db.Column(db.DateTime, default = lambda: datetime.now(timezone.utc))
+    updated_at = db.Column(db.DateTime, default = lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
 
     status = db.Column(Enum("pending", "approved", "rejected", name="company_approval"), default = "pending")
     blacklist = db.Column(db.Boolean, default = False)

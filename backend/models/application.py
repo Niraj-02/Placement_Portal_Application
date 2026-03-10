@@ -14,6 +14,7 @@ class Application(db.Model):
     status = db.Column(Enum("applied", "shortlisted", "interview", "selected", "rejected", "placed", name="application_status"), default = "applied")
 
     applied_at = db.Column(db.DateTime, default = lambda: datetime.now(timezone.utc))
+    updated_at = db.Column(db.DateTime, default = lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
 
     def __repr__(self):
         return f"<Application Student ID: {self.student_id} , Placement Drive ID: {self.placement_drive_id} , Status: {self.status}>"

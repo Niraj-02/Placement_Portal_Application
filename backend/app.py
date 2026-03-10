@@ -29,6 +29,14 @@ def create_app():
     
     api.add_resource(Login, "/api/login")
 
+    api.add_resource(Companies, "/companies", "/companies/<int:company_id>")
+
+    api.add_resource(Applications, "/application", "/application/<int:application_id>")
+
+    api.add_resource(PlacementDrives, "/drives", "/drives/<int:drive_id>")
+
+    api.add_resource(Student, "/students", "/students/<int:student_id>")
+
     return app
 
 app = create_app()

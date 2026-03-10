@@ -13,6 +13,7 @@ class User(db.Model):
     role = db.Column(Enum("admin", "student", "company", name="user_roles"), nullable = False)
    
     created_at = db.Column(db.DateTime, default = lambda: datetime.now(timezone.utc))
+    updated_at = db.Column(db.DateTime, default = lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
 
     student = db.relationship("Student", backref="user", uselist=False, cascade="all, delete-orphan")
     company = db.relationship("Company", backref="user", uselist=False, cascade="all, delete-orphan")

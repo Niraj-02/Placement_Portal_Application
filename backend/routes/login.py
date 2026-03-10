@@ -25,6 +25,18 @@ class Login(Resource):
         if user.password != password:
             return {"message": "Incorrect password!! Please try again"},401
         
+        if user.role == "company":
+            company = Company.query.filter_by(user_id=user.id).first()
+
+            if not company:
+                return {"message": "Company profile not found"}, 404
+            
+            if company.status != "approved":
+                return {"message": f"Company registration is {company.status}. Please wait for approval."}, 403
+            
+            if company.blacklist:
+                return {"message": "Company is blacklisted. Contact support for more information."}, 403
+        
         access_token = create_access_token(
             identity=user.id, 
             expires_delta= timedelta(days=1),

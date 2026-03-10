@@ -20,6 +20,7 @@ class Student(db.Model):
     blacklist = db.Column(db.Boolean, default = False)
 
     created_at = db.Column(db.DateTime, default = lambda: datetime.now(timezone.utc))
+    updated_at = db.Column(db.DateTime, default = lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
 
     applications = db.relationship("Application", backref="student", cascade="all, delete-orphan")
 
