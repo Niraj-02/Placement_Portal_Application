@@ -16,7 +16,7 @@ def student_formatter(student):
         "skills": student.skills,
         "resume": student.resume,
         "blacklist": student.blacklist,
-        "created_at": student.created_at.isoformat(),
+        "created_at": student.created_at.isoformat() if student.created_at else None,
         "updated_at": student.updated_at.isoformat()
     }
 

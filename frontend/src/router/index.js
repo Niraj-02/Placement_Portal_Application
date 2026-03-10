@@ -23,13 +23,27 @@ const router = createRouter({
     {
       path: '/student_registration',
       name: 'student',
-      component: () => import('../views/StudentRegistrationView.vue'),
+      component: () => import('../views/student/StudentRegistrationView.vue'),
     },
     {
       path: '/admin_dashboard',
       name: 'AdminDashboard',
-      component: () => import('../views/AdminDashboardView.vue'),
+      component: () => import('../views/admin/AdminDashboardView.vue'),
     },
+    {
+      path: '/company_dashboard',
+      name: 'CompanyDashboard',
+      component: () => import('../views/company/CompanyDashboardView.vue'),
+    },
+    {
+      path:'/company/create-drive',
+      component: () => import('../views/company/CreateDriveView.vue')
+    },
+
+    {
+      path:'/company/drive/:id/applications',
+      component: () => import('../views/company/DriveApplicationsView.vue') 
+    }
   ],
 })
 

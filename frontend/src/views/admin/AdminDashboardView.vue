@@ -53,7 +53,6 @@ async function approveCompany(id){
     }
   )
 
-  getPendingCompanies()
   getAllCompanies()
   }
 
@@ -73,7 +72,7 @@ async function rejectCompany(id){
     }
   )
 
-  getPendingCompanies()
+  getAllCompanies()
 }
 
 // post blacklist api 
@@ -86,9 +85,10 @@ async function blacklistCompany(id){
         Authorization: "Bearer "+localStorage.getItem("token")
       },
       body : JSON.stringify({
-        blacklist:true
+        blacklist:"true"
     })
   })
+  alert("Company blacklisted Succesfully")
   // To refresh the companies list 
   getAllCompanies() 
 }
@@ -265,10 +265,15 @@ const router = useRouter()
 onMounted(()=>{
 
   const token = localStorage.getItem("token")
+  const role = localStorage.getItem("role")
   if (!token) {
     // alert admin login is required to access admin dashboard
     alert("Admin Login required!!")
     router.push("/login")
+  }
+  if(role !== "admin"){
+    alert("Unauthorized access!!!")
+    router.push("login")
   }
 
   getAllCompanies()

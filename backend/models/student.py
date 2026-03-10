@@ -1,3 +1,4 @@
+from sqlalchemy import Enum
 from extensions import db 
 from datetime import datetime,timezone
 
@@ -9,7 +10,22 @@ class Student(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable = False)
 
     name = db.Column(db.String(100), nullable = False)    
-    branch = db.Column(db.String(50), nullable = False)
+    # branch = db.Column(db.String(50), nullable = False)
+    branch = db.Column(
+        Enum(
+            "Computer Science",
+            "Information Technology",
+            "Data Science",
+            "Electronics and Communication",
+            "Electrical Engineering",
+            "Mechanical Engineering",
+            "Civil Engineering",
+            "Chemical Engineering",
+            "Metallurgical Engineering",
+            name="branch_enum"
+        ),
+        nullable=False
+    )
     cgpa = db.Column(db.Float, nullable = False)
     year_of_passing = db.Column(db.String(20), nullable = False)
 

@@ -12,7 +12,7 @@ def application_formatter(application):
         "student_id": application.student_id,
         "placement_drive_id": application.placement_drive_id,
         "status": application.status,
-        "applied_at": application.applied_at.isoformat(),
+        "applied_at": application.applied_at.isoformat() if application.applied_at else None,
         "updated_at": application.updated_at.isoformat()
     }
 
@@ -40,7 +40,7 @@ class Applications(Resource):
         if drive.status != "approved":
             return {"message": "Drive not approved"}, 403
 
-        if drive.drive_status == "completed":
+        if drive.hiring_status == "completed":
             return {"message": "Drive already completed"}, 400
         # deadline = datetime.fromisoformat(data["application_deadline"]).replace(tzinfo=timezone.utc)
         if drive.application_deadline < datetime.utcnow():

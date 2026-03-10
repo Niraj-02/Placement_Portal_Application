@@ -1,10 +1,10 @@
 <script setup>
 
 const props = defineProps({
-  applications: Array
+  companies: Array
 })
 
-const emit = defineEmits(["view","accept","reject"])
+const emit = defineEmits(["view","approve","reject"])
 
 </script>
 
@@ -18,27 +18,27 @@ const emit = defineEmits(["view","accept","reject"])
 
             <thead>
                 <tr>
-                    <th>Company</th>
-                    <th>Drive</th>
-                    <th>Date</th>
+                    <th>Company Name</th>
+                    <th>Industry</th>
+                    <th>Status</th>
                     <th></th>
                 </tr>
             </thead>
 
             <tbody class="table-group-divider">
 
-                <tr v-for="app in applications" :key="app.id">
+                <tr v-for="company in companies" :key="company.id">
 
-                    <td>{{ app.company_name }}</td>
-                    <td>{{ app.drive_name }}</td>
-                    <td>{{ app.created_at }}</td>
+                    <td>{{ company.company_name }}</td>
+                    <td>{{ company.industry }}</td>
+                    <td>{{ company.status }}</td>
 
                 <td>
 
                 <div class="d-flex">
-                <button class="btn btn-primary btn-sm me-2" @click="emit('view', app.id)">View</button>
-                <button class="btn btn-success btn-sm me-2" @click="emit('accept', app.id)">Accept</button>
-                <button class="btn btn-danger btn-sm" @click="emit('reject', app.id)">Reject</button>
+                <button class="btn btn-primary btn-sm me-2" @click="emit('view', company.id)">View</button>
+                <button class="btn btn-success btn-sm me-2" @click="emit('approve', company.id)">Approve</button>
+                <button class="btn btn-danger btn-sm" @click="emit('reject', company.id)">Reject</button>
                 </div>
                 </td>
                 </tr>

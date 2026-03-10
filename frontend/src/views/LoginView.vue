@@ -80,6 +80,7 @@ async function loginUser() {
             alert(data.message || 'An error occurred while logging in');
         } else {
             localStorage.setItem('token', data.access_token);
+            localStorage.setItem('role', data.role);
             alert('Login successful');
 
             if (data.role === 'admin') {

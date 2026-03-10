@@ -14,7 +14,8 @@ const emit = defineEmits(["view","blacklist"])
 
             <colgroup>
                 <col style="width:60%">
-                <col style="width:40%">
+                <col style="width:20%">
+                <col style="width:20%">
                 <col style="width:1%">
             </colgroup>
 
@@ -22,6 +23,7 @@ const emit = defineEmits(["view","blacklist"])
                 <tr>
                     <th>Name</th>
                     <th>Industry</th>
+                    <th>Status</th>
                     <th></th>
                 </tr>
             </thead>
@@ -31,6 +33,7 @@ const emit = defineEmits(["view","blacklist"])
                 <tr v-for="company in companies" :key="company.id">
                     <td>{{ company.company_name }}</td>
                     <td>{{ company.industry }}</td>
+                    <td>{{ company.status }}</td>
 
                     <td>
                         <div class="d-flex">
