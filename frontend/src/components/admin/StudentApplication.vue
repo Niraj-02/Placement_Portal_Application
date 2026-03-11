@@ -19,8 +19,9 @@ const emit = defineEmits(["view","student"])
             <thead>
                 <tr>
                     <th>Application ID</th>
-                    <th>Student ID</th>
-                    <th>Drive ID</th>
+                    <th>Student Name</th>
+                    <th>Company Name</th>
+                    <th>Drive position</th>
                     <th>Status</th>
                     <th>Applied At</th>
                     <th></th>
@@ -32,8 +33,8 @@ const emit = defineEmits(["view","student"])
                 <tr v-for="app in applications" :key="app.id">
 
                     <td>{{ app.id }}</td>
-                    <td>{{ app.student_id }}</td>
-                    <td>{{ app.placement_drive_id }}</td>
+                    <td>{{ app.student_name }}</td>
+                    <td>{{ app.placement_drive_name }}</td>
                     <td> 
                         <span class="badge bg-info"> {{ app.status }} </span> 
                     </td>

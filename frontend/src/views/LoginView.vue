@@ -81,6 +81,7 @@ async function loginUser() {
         } else {
             localStorage.setItem('token', data.access_token);
             localStorage.setItem('role', data.role);
+            localStorage.setItem('myID', data.my_id)
             alert('Login successful');
 
             if (data.role === 'admin') {

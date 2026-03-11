@@ -10,7 +10,10 @@ def application_formatter(application):
     return {
         "id": application.id,
         "student_id": application.student_id,
+        "student_name": application.student.name,
         "placement_drive_id": application.placement_drive_id,
+        "placement_drive_name": application.drive.job_title,
+        "company_name": application.drive.company.company_name,
         "status": application.status,
         "applied_at": application.applied_at.isoformat() if application.applied_at else None,
         "updated_at": application.updated_at.isoformat()

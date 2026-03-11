@@ -102,6 +102,7 @@ class PlacementDrives(Resource):
             return {
                 "id": drive.id,
                 "company_id": drive.company_id,
+                "company_name": drive.company.company_name,
 
                 "start_date": drive.start_date.isoformat(),
                 "application_deadline": drive.application_deadline.isoformat(),
@@ -165,6 +166,7 @@ class PlacementDrives(Resource):
             result.append({
                 "id": drive.id,
                 "company_id": drive.company_id,
+                "company_name": drive.company.company_name,
 
                 "start_date": drive.start_date.isoformat(),
                 "application_deadline": drive.application_deadline.isoformat(),

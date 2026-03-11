@@ -28,7 +28,7 @@ const emit = defineEmits(["view"])
                 <tr v-for="drive in drives" :key="drive.id">
 
                     <td>{{ drive.job_title }}</td>
-                    <td>{{ drive.company_id }}</td>
+                    <td>{{ drive.company_name }}</td>
                     <td>{{ drive.status }}</td>
 
                     <td>

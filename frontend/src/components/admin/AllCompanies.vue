@@ -13,7 +13,8 @@ const emit = defineEmits(["view","blacklist"])
         <table class="table table-striped">
 
             <colgroup>
-                <col style="width:60%">
+                <col style="width:20%">
+                <col style="width:20%">
                 <col style="width:20%">
                 <col style="width:20%">
                 <col style="width:1%">
@@ -23,6 +24,7 @@ const emit = defineEmits(["view","blacklist"])
                 <tr>
                     <th>Name</th>
                     <th>Industry</th>
+                    <th>Location</th>
                     <th>Status</th>
                     <th></th>
                 </tr>
@@ -33,6 +35,7 @@ const emit = defineEmits(["view","blacklist"])
                 <tr v-for="company in companies" :key="company.id">
                     <td>{{ company.company_name }}</td>
                     <td>{{ company.industry }}</td>
+                    <td>{{ company.location }}</td>
                     <td>{{ company.status }}</td>
 
                     <td>

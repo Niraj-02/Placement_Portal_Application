@@ -22,6 +22,8 @@ const selectedStudent = ref(null)
 const selectedDrive = ref(null)
 const selectedApplication = ref(null)
 
+const router = useRouter()
+
 // Company Functions
 
 // Fetching all companies 
@@ -261,7 +263,32 @@ async function viewApplication(id){
   modal.show()
 
 }
-const router = useRouter()
+
+async function search(){
+
+  if(!searchQuery.value) return
+
+  let endpoint = ""
+
+  if(searchType.value === "companies"){
+    endpoint = `http://127.0.0.1:5000/api/companies?search=${searchQuery.value}`
+  }
+
+  if(searchType.value === "students"){
+    endpoint = `http://127.0.0.1:5000/api/students?search=${searchQuery.value}`
+  }
+
+  const res = await fetch(endpoint,{
+    headers:{
+      Authorization: "Bearer "+localStorage.getItem("token")
+    }
+  })
+
+  const data = await res.json()
+
+  searchResults.value = data
+}
+
 onMounted(()=>{
 
   const token = localStorage.getItem("token")
@@ -278,8 +305,10 @@ onMounted(()=>{
 
   getAllCompanies()
   getAllStudents()
-  getAllDrives()
+  getAllDrives()  
   getAllApplications()
+  console.log(pendingDrives)
+  // console.log(ongoingDrives)
 })
 
 </script>
@@ -287,6 +316,7 @@ onMounted(()=>{
 <template>
 
   <div class="container mt-5">
+   
     
     <!-- Companies Component -->
     <AllCompanies :companies="allCompanies"  @view="viewCompany"  @blacklist="blacklistCompany"/>
@@ -335,6 +365,12 @@ onMounted(()=>{
               </tr>
 
               <tr>
+              <td><strong>Location</strong></td>
+              <td>{{ selectedCompany.location }}</td>
+              </tr>
+
+
+              <tr>
               <td><strong>HR</strong></td>
               <td>{{ selectedCompany.hr_name }}</td>
               </tr>
@@ -355,6 +391,15 @@ onMounted(()=>{
               </tr>
             </tbody>
           </table>
+
+          <hr>
+
+          <div>
+            <strong>Description</strong>
+            <p class="mt-2 mb-0">
+              {{ selectedCompany.description }}
+            </p>
+          </div>
 
         </div>
 
@@ -384,20 +429,42 @@ onMounted(()=>{
               </tr>
 
               <tr>
-                <td><strong>Company ID</strong></td>
-                <td>{{ selectedDrive.company_id }}</td>
+                <td><strong>Job type</strong></td>
+                <td>{{ selectedDrive.job_type }}</td>
               </tr>
+
+              <tr>
+                <td><strong>Company Name</strong></td>
+                <td>{{ selectedDrive.company_name }}</td>
+              </tr>
+          
+              <tr>
+                <td><strong>Location</strong></td>
+                <td>{{ selectedDrive.location }}</td>
+              </tr>
+              
 
               <tr>
                 <td><strong>Salary</strong></td>
                 <td>{{ selectedDrive.salary }}</td>
               </tr>
-
               <tr>
-                <td><strong>Location</strong></td>
-                <td>{{ selectedDrive.location }}</td>
+                <td><strong>Eligible Year</strong></td>
+                <td>{{ selectedDrive.eligible_year }}</td>
+              </tr>
+              <tr>
+                <td><strong>Eligible Branchs</strong></td>
+                <td>{{ selectedDrive.eligible_branches }}</td>
               </tr>
 
+              <tr>
+                <td><strong>Minimum cgpa</strong></td>
+                <td>{{ selectedDrive.min_cgpa }}</td>
+              </tr>
+              <tr>
+                <td><strong>Total Openings</strong></td>
+                <td>{{ selectedDrive.openings_count }}</td>
+              </tr>
               <tr>
                 <td><strong>Status</strong></td>
                 <td>{{ selectedDrive.status }}</td>
@@ -512,13 +579,18 @@ onMounted(()=>{
             </tr>
 
             <tr>
-              <td><strong>Student ID</strong></td>
-              <td>{{ selectedApplication.student_id }}</td>
+              <td><strong>Student Name</strong></td>
+              <td>{{ selectedApplication.student_name }}</td>
             </tr>
 
             <tr>
-              <td><strong>Drive ID</strong></td>
-              <td>{{ selectedApplication.placement_drive_id }}</td>
+              <td><strong>Company Name</strong></td>
+              <td>{{ selectedApplication.company_name }}</td>
+            </tr>
+
+            <tr>
+              <td><strong>Drive position name</strong></td>
+              <td>{{ selectedApplication.placement_drive_name }}</td>
             </tr>
 
             <tr>

@@ -113,10 +113,14 @@ class Students(Resource):
 
             if student.id != my_student.id:
                 return {"message": "Unauthorized"}, 403
-            
-            cgpa = request.form.get("cgpa")
-            skills = request.form.get("skills")
-            resume = request.files.get("resume")
+        
+            request.form.get("name")
+            request.form.get("cgpa")
+            request.form.get("skills")
+            request.files.get("resume")
+
+            if name:
+                student.name = name
 
             if cgpa:
                 cgpa = float(cgpa)

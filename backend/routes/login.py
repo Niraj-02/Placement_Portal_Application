@@ -13,6 +13,7 @@ class Login(Resource):
 
         email = data.get("email")
         password = data.get("password")
+        my_id = 0
 
         if not email or not password:
             return {"message": "Email and password are required"}, 400
@@ -37,6 +38,13 @@ class Login(Resource):
             if company.blacklist:
                 return {"message": "Company is blacklisted. Contact support for more information."}, 403
         
+        if user.role == "student":
+            my_id = user.student.id
+        elif user.role == "company":
+            my_id = user.company.id
+        else:
+            my_id = 1
+        
         access_token = create_access_token(
             identity=str(user.id), 
             expires_delta= timedelta(days=1),
@@ -45,7 +53,8 @@ class Login(Resource):
         response = {
             "message": "Login successful",
             "access_token": access_token,
-            "role": user.role
+            "role": user.role,
+            "my_id": my_id
             }
         
         return response,200

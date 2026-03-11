@@ -117,6 +117,7 @@ class Companies(Resource):
         role = claims.get("role") 
 
         data = request.get_json()
+        print(data)
 
         #Admin stuff
         if role == "admin":
@@ -150,29 +151,28 @@ class Companies(Resource):
 
             if not company:
                 return {"message": "Company not found"}, 404
+            
 
-            company_name = data.get("company_name")
-            industry = data.get("industry")
-            description = data.get("description")
-            hr_name = data.get("hr_name")
-            hr_email = data.get("hr_email")
-            website = data.get("website")
-            location = data.get("location")
+            if "company_name" in data:
+                company.company_name = data["company_name"]
 
-            if company_name:
-                company.company_name = company_name            
-            if industry:
-                company.industry = industry            
-            if description:
-                company.description = description
-            if hr_name:
-                company.hr_name = hr_name
-            if hr_email:
-                company.hr_email = hr_email
-            if website:
-                company.website = website
-            if location:
-                company.location = location
+            if "industry" in data:
+                company.industry = data["industry"]
+
+            if "description" in data:
+                company.description = data["description"]
+
+            if "hr_name" in data:
+                company.hr_name = data["hr_name"]
+
+            if "hr_email" in data:
+                company.hr_email = data["hr_email"]
+
+            if "website" in data:
+                company.website = data["website"]
+
+            if "location" in data:
+                company.location = data["location"]
             
             db.session.commit()
 
