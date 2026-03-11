@@ -32,7 +32,7 @@ class PlacementDrive(db.Model):
 
     status = db.Column(Enum("pending", "approved", "rejected", name="approval_status"), default = "pending", nullable=False)
 
-    hiring_status = db.Column(Enum("upcoming","ongoing", "completed", name="drive_status"), default = "upcoming", nullable=False)
+    hiring_status = db.Column(Enum("ongoing", "completed", name="drive_status"), default = "ongoing", nullable=False)
 
     created_at = db.Column(db.DateTime, default = lambda: datetime.now(timezone.utc))
     updated_at = db.Column(db.DateTime, default = lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
